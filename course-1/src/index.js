@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDom from "react-dom/client";
 import { Component6 } from "./Component6";
 import Component7, { Otro } from "./Component7";
@@ -124,14 +124,76 @@ root.render(
       <button type="submit">Send</button>
     </form>
     <Post />
-    
-    {userList.map((it) => {
+    <Counter />
+    <Message />
+    {/* {userList.map((it) => {
       return (
         <div key={it.id}>
           <h1>{JSON.stringify(it)}</h1>
-          <img src={it.image}/>
+          <img src={it.image} />
         </div>
       );
-    })}
+    })} */}
   </>
 );
+
+function Counter() {
+  const [counter, setCounter] = useState(0);
+
+  return (
+    <div>
+      <h1>Count: {counter}</h1>
+      <button
+        onClick={() => {
+          setCounter(counter + 1);
+        }}
+      >
+        Sumar
+      </button>
+      <button
+        onClick={() => {
+          setCounter(counter - 1);
+        }}
+      >
+        Restar
+      </button>
+    </div>
+  );
+}
+
+function Message() {
+  const [msg, setMsg] = useState();
+  const [counter, setCounter] = useState(0);
+
+  //se ejecuta siempre que el componente cambia
+  useEffect(() => {
+    alert('cambio')
+  }, [counter])
+  // , [] hace que solo se ejecute cuando se crea el componente
+  // , [counter] hace que solo se ejecute cuando counter cambie
+
+
+  return (
+    <div>
+      <hr/>
+      <input onChange={(e) => {
+        setMsg(e.target.value)
+      }}/>
+      <button
+        onClick={() => {
+          alert(msg)
+        }}
+      >
+        Save
+      </button>
+      <h1>Count: {counter}</h1>
+      <button
+        onClick={() => {
+          setCounter(counter + 1);
+        }}
+      >
+        Sumar
+      </button>
+    </div>
+  );
+}
