@@ -21,6 +21,12 @@ import MutableRef from './components/context/MutableRef';
 import { Counter2 } from './components/class/Counter';
 import Private from './components/auth/Private';
 import Profile from './components/auth/Profile';
+import List from './components/generics/List';
+import RandomNumber from './components/restriction/RandomNumber';
+import Toast from './components/templateliterals/Toast';
+import Button2 from './components/html/Button';
+import Input2 from './components/html/Input';
+import Text from './components/polymorphic/Text';
 
 //command
 //npx create-react-app ./typescript-test --template typescript
@@ -34,18 +40,23 @@ function App() {
 
   const personList = [
     {
+      id:1,
       first: '1First',
       last: '1Last'
     },
     {
+      id:2,
       first: '2First',
       last: '2Last'
     },
     {
+      id:3,
       first: '3First',
       last: '3Last'
     }
   ]
+
+  const stringList = ['a', 'b', 'c', 'd']
 
   return (
     <div className="App">
@@ -80,10 +91,29 @@ function App() {
         <DomRef />
         <MutableRef />
         <br />
-        <Counter2 message='My counter class'/>
+        <Counter2 message='My counter class' />
         <br />
         <Private isLogged={true} component={Profile}></Private>
         <Private isLogged={false} component={Profile}></Private>
+        <br />
+        <br />
+        {/* <List items={stringList} onClick={(it) => console.log(it)} /> */}
+        {/* <List items={[1, 2, 3]} onClick={(it) => console.log(it)} /> */}
+        <List items={personList} onClick={(it) => console.log(it)} />
+        <br />
+        <br />
+        <br />
+        <RandomNumber value={10} isPositive/>
+        <br/>
+        <br/>
+        <Toast position='center'/>
+        <br/>
+        <br/>
+        <Button2 variant='primary'>New label</Button2>
+        <Input2/>
+        <Text as='h1' size='lg'>Large</Text>
+        <Text as='p' size='md'>Large</Text>
+        <Text as='label' size='sm' htmlFor='asdsad'>Large</Text>
       </Container>
 
     </div>
